@@ -1,0 +1,20 @@
+services:
+  #the containers that make up my environment
+
+  localstack:
+
+    #image from which to create the container
+    #image: localstack/localstack:latest          //These caused issue coz now it requires to create an account and auth token
+    image: localstack/localstack:4.14.0
+
+    #When something connects to localhost:4566 on your Windows machine, forward it to port 4566 inside the LocalStack container.
+    ports:
+      - "4566:4566"
+
+    environment:
+      - SERVICES=s3       #only emulate the S3 service.
+      - DEBUG=0
+
+    volumes:               #folder to container mapping
+      - "./localstack-data:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
