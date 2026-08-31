@@ -1,0 +1,9 @@
+${AnsiColor.BLUE} ██████╗██╗      ██████╗ ██╗   ██╗██████╗   ${AnsiColor.BRIGHT_YELLOW}  ${AnsiColor.BRIGHT_BLUE} ███████╗██╗  ██╗██████╗ ██╗      ██████╗ ██████╗ ███████╗██████╗
+${AnsiColor.BLUE}██╔════╝██║     ██╔═══██╗██║   ██║██╔══██╗  ${AnsiColor.BRIGHT_YELLOW}  ${AnsiColor.BRIGHT_BLUE} ██╔════╝╚██╗██╔╝██╔══██╗██║     ██╔═══██╗██╔══██╗██╔════╝██╔══██╗
+${AnsiColor.BLUE}██║     ██║     ██║   ██║██║   ██║██║  ██║  ${AnsiColor.BRIGHT_YELLOW}  ${AnsiColor.BRIGHT_BLUE} █████╗   ╚███╔╝ ██████╔╝██║     ██║   ██║██████╔╝█████╗  ██████╔╝
+${AnsiColor.BLUE}██║     ██║     ██║   ██║██║   ██║██║  ██║  ${AnsiColor.BRIGHT_YELLOW}  ${AnsiColor.BRIGHT_BLUE} ██╔══╝   ██╔██╗ ██╔═══╝ ██║     ██║   ██║██╔══██╗██╔══╝  ██╔══██╗
+${AnsiColor.BLUE}╚██████╗███████╗╚██████╔╝╚██████╔╝██████╔╝  ${AnsiColor.BRIGHT_YELLOW}  ${AnsiColor.BRIGHT_BLUE} ███████╗██╔╝ ██╗██║     ███████╗╚██████╔╝██║  ██║███████╗██║  ██║
+${AnsiColor.BLUE} ╚═════╝╚══════╝ ╚═════╝  ╚═════╝ ╚═════╝   ${AnsiColor.BRIGHT_YELLOW}  ${AnsiColor.BRIGHT_BLUE} ╚══════╝╚═╝  ╚═╝╚═╝     ╚══════╝ ╚═════╝ ╚═╝  ╚══════╝╚═╝  ╚═╝
+
+${AnsiColor.BRIGHT_CYAN}:: Cloud - Explorer :: Discover • Monitor • Explore Your Cloud ::
+${AnsiColor.BRIGHT_BLUE}:: Running Spring Boot ${spring-boot.version} :: Profile(s): ${spring.profiles.active} ::${AnsiColor.DEFAULT}

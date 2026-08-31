@@ -114,7 +114,7 @@ To be finalized during the architecture phase.
 
 Current phase:
 
-**AWS and S3 Fundamentals → Spring Boot and AWS SDK Integration**
+**Spring Boot Foundation → AWS SDK Integration**
 
 ## Roadmap
 
@@ -126,13 +126,28 @@ Current phase:
 * [x] S3 bucket and object exploration
 * [x] Prefix-based navigation
 * [x] S3 pagination fundamentals
-* [ ] Spring Boot project setup
+* [x] Spring Boot project setup
 * [ ] AWS SDK integration
 * [ ] Explorer API
 * [ ] Authentication and authorization
 * [ ] Frontend application
 * [ ] Search and filtering
 * [ ] Deployment
+
+## Spring Boot Backend
+
+The backend has been initialized as a Spring Boot application.
+
+Current backend setup includes:
+
+* Java 25
+* Spring Boot 4.1.1
+* Maven
+* Spring Web MVC
+* Spring Boot Actuator
+* Embedded Tomcat
+
+The backend application currently runs locally on: http://localhost:8081
 
 ## Future Vision
 

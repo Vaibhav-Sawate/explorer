@@ -92,9 +92,29 @@ Load Next Page
 * [x] Learned S3 object keys and prefixes
 * [x] Tested prefix-based navigation
 * [x] Tested pagination
-* [ ] Spring Boot application setup
+* [x] Spring Boot application setup
 * [ ] AWS SDK integration
 * [ ] Explorer backend API
 * [ ] Frontend implementation
 * [ ] Authentication and authorization
 * [ ] Deployment
+
+
+### Spring Boot Fundamentals
+
+#### Spring Boot Application Setup
+
+Created the Cloud Explorer backend as a Spring Boot application.
+
+Current backend stack:
+
+* Java 25
+* Spring Boot 4.1.1
+* Maven
+* Spring Web MVC
+* Spring Boot Actuator
+
+The backend application entry point is:
+
+```java
+ExplorerApplication
