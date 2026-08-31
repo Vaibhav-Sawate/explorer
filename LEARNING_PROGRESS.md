@@ -1,0 +1,100 @@
+## Learning Progress
+
+### Local Development Setup
+
+The project currently uses LocalStack to simulate AWS services locally.
+
+Tools configured:
+
+* Docker
+* LocalStack
+* AWS CLI
+* IntelliJ IDEA
+
+LocalStack is running on:
+
+`http://localhost:4566`
+
+### S3 Concepts Learned
+
+#### Bucket and Object Key
+
+Example:
+
+`S3 URI: s3://cloud-data/support/customer-101/logs/error.log`
+
+* Bucket: `cloud-data`
+* Object Key: `support/customer-101/logs/error.log`
+
+S3 does not have traditional folders. Folder-like structures are created using object key prefixes.
+
+#### Prefix-Based Navigation
+
+Cloud Explorer will provide a filesystem-like navigation experience using:
+
+* `Prefix`
+* `Delimiter`
+* `Contents`
+* `CommonPrefixes`
+
+Example:
+
+```text
+📄 hello.txt
+📁 reports
+📁 support
+```
+
+The application will use the S3 `ListObjectsV2` API with:
+
+```text
+Prefix = current path
+Delimiter = /
+```
+
+* `Contents` represents objects/files at the current navigation level.
+* `CommonPrefixes` represents virtual folders.
+
+#### Pagination
+
+S3 object listings are paginated.
+
+Important concepts:
+
+* `MaxKeys`
+* `IsTruncated`
+* `NextContinuationToken`
+
+Cloud Explorer will paginate results within the currently opened prefix rather than loading an entire bucket.
+
+Example:
+
+```text
+Current Prefix
+      ↓
+ListObjectsV2
+      ↓
+Limited Results
+      ↓
+Continuation Token
+      ↓
+Load Next Page
+```
+
+### Current Progress
+
+* [x] Docker configured
+* [x] LocalStack configured
+* [x] AWS CLI installed
+* [x] Connected AWS CLI to LocalStack
+* [x] Created local S3 bucket
+* [x] Uploaded test objects
+* [x] Learned S3 object keys and prefixes
+* [x] Tested prefix-based navigation
+* [x] Tested pagination
+* [ ] Spring Boot application setup
+* [ ] AWS SDK integration
+* [ ] Explorer backend API
+* [ ] Frontend implementation
+* [ ] Authentication and authorization
+* [ ] Deployment

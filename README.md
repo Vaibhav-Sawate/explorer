@@ -48,7 +48,7 @@ The project will follow these principles:
 
 The initial architecture direction is:
 
-```text
+```text id="qcy4b5"
 User
   |
   v
@@ -70,16 +70,17 @@ Storage Provider
 
 ## Local Development
 
-Local development will initially use:
+Local development currently uses:
 
 * Docker
 * Docker Compose
 * LocalStack
+* AWS CLI
 * S3-compatible APIs
 
 The infrastructure configuration is available under:
 
-```text
+```text id="n69fb8"
 infrastructure/local/
 ```
 
@@ -113,17 +114,20 @@ To be finalized during the architecture phase.
 
 Current phase:
 
-**AWS and S3 Fundamentals → Local Development Environment**
+**AWS and S3 Fundamentals → Spring Boot and AWS SDK Integration**
 
 ## Roadmap
 
 * [x] S3 fundamentals
 * [x] IAM fundamentals
 * [x] AWS Console vs application access
-* [ ] Local S3 environment
-* [ ] AWS CLI exploration
+* [x] Local S3 environment
+* [x] AWS CLI exploration
+* [x] S3 bucket and object exploration
+* [x] Prefix-based navigation
+* [x] S3 pagination fundamentals
 * [ ] Spring Boot project setup
-* [ ] S3 integration
+* [ ] AWS SDK integration
 * [ ] Explorer API
 * [ ] Authentication and authorization
 * [ ] Frontend application
