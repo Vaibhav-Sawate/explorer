@@ -1,0 +1,150 @@
+# Cloud Explorer
+
+Cloud Explorer is a user-friendly application for browsing and discovering files stored in cloud storage.
+
+The initial version focuses on **Amazon S3**, providing an intuitive file-explorer-like experience for navigating buckets, prefixes, and objects without requiring users to interact directly with the AWS Console.
+
+## Project Goals
+
+This project is being built as a learning-focused, end-to-end engineering project covering:
+
+* Java and Spring Boot
+* Frontend development
+* AWS and Amazon S3
+* IAM and cloud security
+* System architecture
+* Docker and containerization
+* Authentication and authorization
+* Deployment and DevOps
+
+## Initial Scope
+
+The first version will focus on **read-only access** to S3-compatible storage.
+
+Planned capabilities include:
+
+* Browse storage using a file-explorer-like interface
+* Navigate prefixes and objects
+* Search for objects
+* Filter objects
+* View object metadata
+* Preview supported files
+* Download authorized objects
+* Restrict users to authorized buckets and prefixes
+
+## Security Principles
+
+The project will follow these principles:
+
+* Read-only access by default
+* Least-privilege access
+* Backend-enforced authorization
+* Scoped access to buckets and prefixes
+* Defense in depth
+* Temporary credentials where applicable
+* No trust in frontend-only authorization
+
+## Architecture
+
+The initial architecture direction is:
+
+```text
+User
+  |
+  v
+Cloud Explorer Frontend
+  |
+  v
+Spring Boot Backend
+  |
+  v
+Authorization Layer
+  |
+  v
+Storage Provider
+  |
+  +--> Amazon S3
+  |
+  +--> Other providers (future)
+```
+
+## Local Development
+
+Local development will initially use:
+
+* Docker
+* Docker Compose
+* LocalStack
+* S3-compatible APIs
+
+The infrastructure configuration is available under:
+
+```text
+infrastructure/local/
+```
+
+## Technology Stack
+
+### Backend
+
+* Java
+* Spring Boot
+* AWS SDK for Java
+
+### Frontend
+
+To be finalized during the architecture phase.
+
+### Infrastructure
+
+* Docker
+* Docker Compose
+* LocalStack
+
+### Cloud
+
+* Amazon S3
+* AWS IAM
+* AWS STS
+
+## Project Status
+
+🚧 **Under active development**
+
+Current phase:
+
+**AWS and S3 Fundamentals → Local Development Environment**
+
+## Roadmap
+
+* [x] S3 fundamentals
+* [x] IAM fundamentals
+* [x] AWS Console vs application access
+* [ ] Local S3 environment
+* [ ] AWS CLI exploration
+* [ ] Spring Boot project setup
+* [ ] S3 integration
+* [ ] Explorer API
+* [ ] Authentication and authorization
+* [ ] Frontend application
+* [ ] Search and filtering
+* [ ] Deployment
+
+## Future Vision
+
+Cloud Explorer is designed with extensibility in mind.
+
+While the initial implementation focuses on Amazon S3, the architecture may eventually support additional cloud storage providers.
+
+Potential future integrations include:
+
+* Other cloud object storage providers
+* Application integrations
+* Multiple storage connections
+* Advanced search
+* Audit logging
+* File operations with controlled permissions
+
+---
+
+Built as a hands-on learning project to explore backend development, cloud architecture, security, frontend development, and deployment.
