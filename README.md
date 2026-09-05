@@ -114,7 +114,8 @@ To be finalized during the architecture phase.
 
 Current phase:
 
-**AWS SDK Integration → Explorer API Development**
+**Core Explorer API → S3 Navigation and Pagination**
+
 ## Roadmap
 
 * [x] S3 fundamentals
@@ -127,7 +128,8 @@ Current phase:
 * [x] S3 pagination fundamentals
 * [x] Spring Boot project setup
 * [x] AWS SDK integration
-* [ ] Explorer API
+* [x] Prefix-based navigation API
+* [x] S3 pagination
 * [ ] Authentication and authorization
 * [ ] Frontend application
 * [ ] Search and filtering

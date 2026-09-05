@@ -1,13 +1,14 @@
 package com.explorer.backend.controller;
 
+import com.explorer.backend.dto.ObjectListResponse;
 import com.explorer.backend.service.S3Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import software.amazon.awssdk.services.s3.model.Bucket;
+import jakarta.validation.constraints.Min;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
+@Validated
 @RestController
 @RequestMapping("/api")
 public class S3Controller {
@@ -21,5 +22,21 @@ public class S3Controller {
     @GetMapping("/buckets")
     public List<String> listBuckets() {
         return s3Service.listBuckets();
+    }
+
+    @GetMapping("/buckets/{bucket}/objects")
+    public ObjectListResponse listObjects(
+            @PathVariable String bucket,
+            @RequestParam(defaultValue = "")
+            String prefix,
+
+            @RequestParam(required = false)
+            @Min(value =1, message="maxKeys must be greater than 0")
+            Integer maxKeys,
+
+            @RequestParam(required = false)
+            String continuationToken
+    ) {
+        return s3Service.listObjects(bucket, prefix,  maxKeys, continuationToken);
     }
 }

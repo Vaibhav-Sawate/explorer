@@ -94,7 +94,7 @@ Load Next Page
 * [x] Tested pagination
 * [x] Spring Boot application setup
 * [x] AWS SDK integration
-* [ ] Explorer backend API
+* [x] Basic Explorer backend API
 * [ ] Frontend implementation
 * [ ] Authentication and authorization
 * [ ] Deployment
@@ -129,3 +129,91 @@ Learned about Maven dependency management using the AWS SDK BOM.
 The BOM manages compatible versions for AWS SDK modules.
 
 Current AWS dependency: "software.amazon.awssdk:s3"
+
+
+
+### Spring Boot S3 Integration
+
+#### S3Client Configuration
+
+Configured the AWS SDK `S3Client` as a Spring Bean.
+
+LocalStack configuration includes:
+
+* Custom endpoint configuration
+* Static credentials for local development
+* Configured AWS region
+* Path-style S3 access
+
+Path-style access was required because virtual-hosted-style addressing attempted to resolve bucket-specific hostnames such as:
+
+`cloud-data.localhost`
+
+Instead, LocalStack is accessed using:
+
+`localhost:4566/bucket-name`
+
+#### Bucket Listing
+
+Implemented an endpoint for listing available buckets:
+
+`GET /api/buckets`
+
+#### Object Listing and Prefix Navigation
+
+Implemented:
+
+`GET /api/buckets/{bucket}/objects`
+
+Supported query parameters:
+
+* `prefix`
+* `maxKeys`
+* `continuationToken`
+
+Object navigation uses the S3 `ListObjectsV2` API with:
+
+* `Prefix`
+* `Delimiter`
+* `Contents`
+* `CommonPrefixes`
+
+API responses separate:
+
+* Folders
+* Files
+
+File metadata currently includes:
+
+* Name
+* Object key
+* Size
+* Last modified timestamp
+
+#### Pagination
+
+Implemented S3 pagination using:
+
+* `maxKeys`
+* `continuationToken`
+* `isTruncated`
+* `nextContinuationToken`
+
+Pagination was tested across multiple pages using LocalStack.
+
+#### Validation and Error Handling
+
+Added request validation for:
+
+* `maxKeys` must be greater than `0`
+
+Added global exception handling using:
+
+* `@RestControllerAdvice`
+* `ConstraintViolationException`
+
+API errors now return a consistent structure containing:
+
+* Timestamp
+* HTTP status
+* Error message
