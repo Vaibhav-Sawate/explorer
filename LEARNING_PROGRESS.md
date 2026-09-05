@@ -93,7 +93,7 @@ Load Next Page
 * [x] Tested prefix-based navigation
 * [x] Tested pagination
 * [x] Spring Boot application setup
-* [ ] AWS SDK integration
+* [x] AWS SDK integration
 * [ ] Explorer backend API
 * [ ] Frontend implementation
 * [ ] Authentication and authorization
@@ -115,6 +115,17 @@ Current backend stack:
 * Spring Boot Actuator
 
 The backend application entry point is:
+ExplorerApplication.java
 
-```java
-ExplorerApplication
+
+### AWS SDK and S3 Integration
+
+#### AWS SDK for Java v2
+
+Added the AWS SDK for Java v2 to the Spring Boot backend.
+
+Learned about Maven dependency management using the AWS SDK BOM.
+
+The BOM manages compatible versions for AWS SDK modules.
+
+Current AWS dependency: "software.amazon.awssdk:s3"

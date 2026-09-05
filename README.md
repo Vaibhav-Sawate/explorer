@@ -90,7 +90,7 @@ infrastructure/local/
 
 * Java
 * Spring Boot
-* AWS SDK for Java
+* AWS SDK for Java v2
 
 ### Frontend
 
@@ -114,8 +114,7 @@ To be finalized during the architecture phase.
 
 Current phase:
 
-**Spring Boot Foundation → AWS SDK Integration**
-
+**AWS SDK Integration → Explorer API Development**
 ## Roadmap
 
 * [x] S3 fundamentals
@@ -127,7 +126,7 @@ Current phase:
 * [x] Prefix-based navigation
 * [x] S3 pagination fundamentals
 * [x] Spring Boot project setup
-* [ ] AWS SDK integration
+* [x] AWS SDK integration
 * [ ] Explorer API
 * [ ] Authentication and authorization
 * [ ] Frontend application
@@ -148,6 +147,25 @@ Current backend setup includes:
 * Embedded Tomcat
 
 The backend application currently runs locally on: http://localhost:8081
+
+## AWS SDK and LocalStack Integration
+
+The Spring Boot backend is now connected to LocalStack using the AWS SDK for Java v2.
+
+The integration currently includes:
+
+* AWS SDK for Java v2
+* AWS SDK BOM for dependency version management
+* `S3Client` configured as a Spring-managed Bean
+* LocalStack S3 endpoint configuration
+* Externalized S3 configuration through `application.properties`
+
+### Current S3 Configuration
+
+Local development uses LocalStack:
+
+Endpoint: http://localhost:4566
+Region: us-east-1
 
 ## Future Vision
 
