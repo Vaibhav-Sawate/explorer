@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import software.amazon.awssdk.services.s3.model.NoSuchBucketException;
+import software.amazon.awssdk.services.s3.model.S3Exception;
 
 import java.time.Instant;
 
@@ -30,6 +32,37 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
+                .body(errorResponse);
+    }
+
+
+    @ExceptionHandler(NoSuchBucketException.class)
+    public ResponseEntity<ErrorResponse> handleNoSuchBucketException(
+            NoSuchBucketException exception
+    ){
+        ErrorResponse errorResponse = new ErrorResponse(
+                Instant.now(),
+                HttpStatus.NOT_FOUND.value(),
+                "Bucket not found"
+        );
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(errorResponse);
+    }
+
+    @ExceptionHandler(S3Exception.class)
+    public ResponseEntity<ErrorResponse> handleS3Exception(
+            S3Exception exception
+    ){
+        ErrorResponse errorResponse = new ErrorResponse(
+                Instant.now(),
+                exception.statusCode(),
+                "S3 operation failed"
+        );
+
+        return ResponseEntity
+                .status(exception.statusCode())
                 .body(errorResponse);
     }
 }
