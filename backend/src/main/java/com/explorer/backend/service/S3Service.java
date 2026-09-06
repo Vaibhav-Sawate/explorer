@@ -4,12 +4,11 @@ import com.explorer.backend.dto.FileResponse;
 import com.explorer.backend.dto.FolderResponse;
 import com.explorer.backend.dto.ObjectListResponse;
 import com.explorer.backend.dto.ObjectMetadataResponse;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import software.amazon.awssdk.core.ResponseInputStream;
 import software.amazon.awssdk.services.s3.S3Client;
-import software.amazon.awssdk.services.s3.model.HeadObjectRequest;
-import software.amazon.awssdk.services.s3.model.HeadObjectResponse;
-import software.amazon.awssdk.services.s3.model.ListObjectsV2Request;
-import software.amazon.awssdk.services.s3.model.ListObjectsV2Response;
+import software.amazon.awssdk.services.s3.model.*;
 
 import java.util.List;
 
@@ -111,6 +110,18 @@ public class S3Service {
                 response.eTag(),
                 response.metadata()
         );
+    }
+
+    public ResponseInputStream<GetObjectResponse> downloadObject(
+            String bucket,
+            String key
+    ) {
+        GetObjectRequest request = GetObjectRequest.builder()
+                .bucket(bucket)
+                .key(key)
+                .build();
+
+        return s3Client.getObject(request);
     }
 
 }
