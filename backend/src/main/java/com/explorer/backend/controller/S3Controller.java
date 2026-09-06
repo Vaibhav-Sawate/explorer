@@ -1,8 +1,10 @@
 package com.explorer.backend.controller;
 
 import com.explorer.backend.dto.ObjectListResponse;
+import com.explorer.backend.dto.ObjectMetadataResponse;
 import com.explorer.backend.service.S3Service;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.annotation.Validated;
 
@@ -38,5 +40,16 @@ public class S3Controller {
             String continuationToken
     ) {
         return s3Service.listObjects(bucket, prefix,  maxKeys, continuationToken);
+    }
+
+    @GetMapping("/buckets/{bucket}/object")
+    public ObjectMetadataResponse getObjectMetadata(
+            @PathVariable String bucket,
+
+            @RequestParam
+            @NotBlank (message = "key must not be blank")
+            String key
+    ) {
+        return s3Service.getObjectMetadata(bucket, key);
     }
 }

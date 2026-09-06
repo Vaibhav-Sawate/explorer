@@ -3,6 +3,7 @@ package com.explorer.backend.exception;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import software.amazon.awssdk.services.s3.model.NoSuchBucketException;
@@ -55,14 +56,38 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleS3Exception(
             S3Exception exception
     ){
+        String message ="S3 operation failed";
+
+        if(exception.statusCode() == HttpStatus.NOT_FOUND.value()
+                && exception.awsErrorDetails() != null
+                && "NoSuchKey".equals(exception.awsErrorDetails().errorCode())){
+
+            message ="Object not found";
+        }
         ErrorResponse errorResponse = new ErrorResponse(
                 Instant.now(),
                 exception.statusCode(),
-                "S3 operation failed"
+                message
         );
 
         return ResponseEntity
                 .status(exception.statusCode())
                 .body(errorResponse);
     }
+
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public ResponseEntity<ErrorResponse> handleMissingRequestParameter(
+            MissingServletRequestParameterException exception
+    ){
+        ErrorResponse errorResponse = new ErrorResponse(
+                Instant.now(),
+                HttpStatus.BAD_REQUEST.value(),
+                exception.getParameterName()+ "parameter is required"
+        );
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(errorResponse);
+    }
+
 }

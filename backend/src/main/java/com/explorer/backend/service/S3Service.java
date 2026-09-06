@@ -3,8 +3,11 @@ package com.explorer.backend.service;
 import com.explorer.backend.dto.FileResponse;
 import com.explorer.backend.dto.FolderResponse;
 import com.explorer.backend.dto.ObjectListResponse;
+import com.explorer.backend.dto.ObjectMetadataResponse;
 import org.springframework.stereotype.Service;
 import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.HeadObjectRequest;
+import software.amazon.awssdk.services.s3.model.HeadObjectResponse;
 import software.amazon.awssdk.services.s3.model.ListObjectsV2Request;
 import software.amazon.awssdk.services.s3.model.ListObjectsV2Response;
 
@@ -88,4 +91,26 @@ public class S3Service {
                 ? key.substring(lastSlashIndex+1)
                 : key;
     }
+
+    public ObjectMetadataResponse getObjectMetadata(
+            String bucket,
+            String key
+    ) {
+        HeadObjectRequest request = HeadObjectRequest.builder()
+                .bucket(bucket)
+                .key(key)
+                .build();
+
+        HeadObjectResponse response = s3Client.headObject(request);
+
+        return new ObjectMetadataResponse(
+                key,
+                response.contentLength(),
+                response.lastModified(),
+                response.contentType(),
+                response.eTag(),
+                response.metadata()
+        );
+    }
+
 }
