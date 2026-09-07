@@ -14,6 +14,9 @@ services:
     environment:
       - SERVICES=s3       #only emulate the S3 service.
       - DEBUG=0
+      - PERSISTENCE=1
+      - SNAPSHOT_SAVE_STRATEGY=ON_REQUEST
+      - SNAPSHOT_LOAD_STRATEGY=ON_STARTUP
 
     volumes:               #folder to container mapping
       - "./localstack-data:/var/lib/localstack"
