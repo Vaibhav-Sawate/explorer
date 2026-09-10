@@ -95,6 +95,12 @@ Load Next Page
 * [x] Spring Boot application setup
 * [x] AWS SDK integration
 * [x] Basic Explorer backend API
+* [x] Add Copy Object API
+* [x] Use AWS SDK `CopyObjectRequest`
+* [x] Copy objects within the same bucket
+* [x] Validate source and destination keys
+* [x] Handle missing source objects
+* [x] Verify copied object using metadata API
 * [ ] Frontend implementation
 * [ ] Authentication and authorization
 * [ ] Deployment

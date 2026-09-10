@@ -114,7 +114,7 @@ To be finalized during the architecture phase.
 
 Current phase:
 
-**Core Explorer API → S3 Navigation and Pagination**
+**Core Explorer API → S3 Object Operations**
 
 ## Roadmap
 
@@ -130,6 +130,7 @@ Current phase:
 * [x] AWS SDK integration
 * [x] Prefix-based navigation API
 * [x] S3 pagination
+* [x] S3 object metadata, download, preview serach, copy
 * [ ] Authentication and authorization
 * [ ] Frontend application
 * [ ] Search and filtering
@@ -168,6 +169,14 @@ Local development uses LocalStack:
 
 Endpoint: http://localhost:4566
 Region: us-east-1
+
+## S3 Object Operations
+
+The backend currently supports the following S3 object operations:
+
+### Object Metadata
+
+GET /api/buckets/{bucket}/object?key={key}
 
 ## Future Vision
 

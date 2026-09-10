@@ -1,7 +1,6 @@
 package com.explorer.backend.controller;
 
-import com.explorer.backend.dto.ObjectListResponse;
-import com.explorer.backend.dto.ObjectMetadataResponse;
+import com.explorer.backend.dto.*;
 import com.explorer.backend.service.S3Service;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -89,5 +88,46 @@ public class S3Controller {
                                 .toString()
                 )
                 .body(new InputStreamResource(objectStream));
+    }
+
+    @GetMapping(
+            value = "/buckets/{bucket}/object/preview",
+            produces = MediaType.TEXT_PLAIN_VALUE
+    )
+    public ResponseEntity<String> previewObject(
+            @PathVariable String bucket,
+            @RequestParam
+            @NotBlank(message="key must not blank")
+            String key
+    ) {
+        String content = s3Service.previewObject(bucket, key);
+        return ResponseEntity.ok(content);
+    }
+
+    @GetMapping("/buckets/{bucket}/objects/search")
+    public ObjectSearchResponse searchObjects(
+            @PathVariable String bucket,
+            @RequestParam
+            @NotBlank(message = "query must not be blank")
+            String query
+    ) {
+        List<FileResponse> files = s3Service.searchObjects(bucket, query);
+        return new ObjectSearchResponse(
+                bucket,
+                query,
+                files
+        );
+    }
+
+    @PostMapping("buckets/{bucket}/object/copy")
+    public CopyObjectResponse copyObject(
+            @PathVariable String bucket,
+            @RequestParam @NotBlank String sourceKey,
+            @RequestParam @NotBlank String destinationKey
+    ) {
+        s3Service.copyObject(bucket, sourceKey, destinationKey);
+
+        return new CopyObjectResponse(
+                bucket, sourceKey, destinationKey);
     }
 }
