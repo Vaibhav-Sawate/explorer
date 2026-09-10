@@ -130,4 +130,15 @@ public class S3Controller {
         return new CopyObjectResponse(
                 bucket, sourceKey, destinationKey);
     }
+
+    @DeleteMapping("buckets/{bucket}/object")
+    public DeleteObjectResponse deleteObject(
+            @PathVariable String bucket,
+            @RequestParam @NotBlank String key
+    ) {
+        s3Service.deleteObject(bucket, key);
+        return new DeleteObjectResponse(bucket, key);
+    }
+
+
 }

@@ -232,4 +232,12 @@ public class S3Service {
         s3Client.copyObject(request);
     }
 
+    public void deleteObject( String bucket, String key){
+        DeleteObjectRequest request = DeleteObjectRequest.builder()
+                .bucket(bucket)
+                .key(key)
+                .build();
+        s3Client.deleteObject(request);
+    }
+
 }

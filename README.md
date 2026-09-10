@@ -130,7 +130,7 @@ Current phase:
 * [x] AWS SDK integration
 * [x] Prefix-based navigation API
 * [x] S3 pagination
-* [x] S3 object metadata, download, preview serach, copy
+* [x] S3 object metadata, download, preview, search, copy, delete
 * [ ] Authentication and authorization
 * [ ] Frontend application
 * [ ] Search and filtering
@@ -176,7 +176,9 @@ The backend currently supports the following S3 object operations:
 
 ### Object Metadata
 
+text
 GET /api/buckets/{bucket}/object?key={key}
+
 
 ## Future Vision
 

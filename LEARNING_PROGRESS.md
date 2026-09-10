@@ -101,6 +101,11 @@ Load Next Page
 * [x] Validate source and destination keys
 * [x] Handle missing source objects
 * [x] Verify copied object using metadata API
+* [x] Add Delete Object API
+* [x] Use AWS SDK `DeleteObjectRequest`
+* [x] Delete objects from a bucket
+* [x] Verify deletion using metadata API
+* [x] Understand S3 delete idempotency
 * [ ] Frontend implementation
 * [ ] Authentication and authorization
 * [ ] Deployment
